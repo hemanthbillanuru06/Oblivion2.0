@@ -1,0 +1,28 @@
+{
+  "name": "oblivion2.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "seed": "npm run seed --prefix server",
+    "test": "npm run test --prefix server",
+    "build": "npm run build --prefix server && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hemanthbillanuru06/Oblivion2.0.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hemanthbillanuru06/Oblivion2.0/issues"
+  },
+  "homepage": "https://github.com/hemanthbillanuru06/Oblivion2.0#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
