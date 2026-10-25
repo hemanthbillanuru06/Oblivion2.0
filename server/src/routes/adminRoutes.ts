@@ -14,17 +14,17 @@ import { authenticateToken, authorizeRoles } from '../middleware/auth.js';
 const router = Router();
 
 // Categories public read
-router.get('/categories', getCategories);
+router.get('/categories', getCategories as any);
 
 // All other admin endpoints protected by admin role
-router.use(authenticateToken, authorizeRoles('admin'));
+router.use(authenticateToken as any, authorizeRoles('admin') as any);
 
-router.get('/dashboard', getAdminDashboard);
-router.get('/users', getUsers);
-router.put('/users/:id/status', updateUserStatus);
-router.put('/users/:id/role', updateUserRole);
-router.post('/courses/:id/moderate', moderateCourse);
-router.get('/audit-logs', getAuditLogs);
-router.post('/categories', createCategory);
+router.get('/dashboard', getAdminDashboard as any);
+router.get('/users', getUsers as any);
+router.put('/users/:id/status', updateUserStatus as any);
+router.put('/users/:id/role', updateUserRole as any);
+router.post('/courses/:id/moderate', moderateCourse as any);
+router.get('/audit-logs', getAuditLogs as any);
+router.post('/categories', createCategory as any);
 
 export default router;

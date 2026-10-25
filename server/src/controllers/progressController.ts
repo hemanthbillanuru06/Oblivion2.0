@@ -16,7 +16,7 @@ export const getCoursePlayerState = async (req: AuthRequest, res: Response): Pro
       return;
     }
 
-    const { courseId } = req.params;
+    const courseId = req.params.courseId as string;
 
     const course = await Course.findById(courseId).populate('instructor', 'name profileImage headline');
     if (!course) {
@@ -82,7 +82,8 @@ export const markLessonComplete = async (req: AuthRequest, res: Response): Promi
       return;
     }
 
-    const { courseId, lessonId } = req.params;
+    const courseId = req.params.courseId as string;
+    const lessonId = req.params.lessonId as string;
 
     const [course, lesson] = await Promise.all([
       Course.findById(courseId),
@@ -150,7 +151,8 @@ export const markLessonIncomplete = async (req: AuthRequest, res: Response): Pro
       return;
     }
 
-    const { courseId, lessonId } = req.params;
+    const courseId = req.params.courseId as string;
+    const lessonId = req.params.lessonId as string;
 
     await LessonProgress.findOneAndUpdate(
       { studentId: req.user._id, courseId, lessonId },
@@ -181,7 +183,8 @@ export const updateLastAccessed = async (req: AuthRequest, res: Response): Promi
       return;
     }
 
-    const { courseId, lessonId } = req.params;
+    const courseId = req.params.courseId as string;
+    const lessonId = req.params.lessonId as string;
 
     await Enrollment.findOneAndUpdate(
       { studentId: req.user._id, courseId },

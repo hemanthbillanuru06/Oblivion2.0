@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GraduationCap, ShieldCheck, Mail, Heart, Github, Twitter, Linkedin } from 'lucide-react';
+import { GraduationCap, ShieldCheck, Mail, Heart, Globe, Share2 } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -22,13 +22,13 @@ export const Footer: React.FC = () => {
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a href="#" className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition-colors">
-                <Twitter className="w-4 h-4" />
+                <Globe className="w-4 h-4" />
               </a>
               <a href="#" className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition-colors">
-                <Github className="w-4 h-4" />
+                <Mail className="w-4 h-4" />
               </a>
               <a href="#" className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition-colors">
-                <Linkedin className="w-4 h-4" />
+                <Share2 className="w-4 h-4" />
               </a>
             </div>
           </div>

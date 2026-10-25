@@ -94,7 +94,7 @@ export const getCourses = async (req: Request, res: Response): Promise<void> => 
 // Course Details with Modules, Lessons & Reviews
 export const getCourseDetails = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { identifier } = req.params;
+    const identifier = req.params.identifier as string;
 
     const isObjectId = mongoose.Types.ObjectId.isValid(identifier);
     const query = isObjectId ? { _id: identifier } : { slug: identifier };
@@ -273,7 +273,7 @@ export const updateCourse = async (req: AuthRequest, res: Response): Promise<voi
 // Module Management
 export const addModule = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { courseId } = req.params;
+    const courseId = req.params.courseId as string;
     const { title, description } = req.body;
 
     const count = await Module.countDocuments({ courseId });
@@ -293,7 +293,8 @@ export const addModule = async (req: AuthRequest, res: Response): Promise<void> 
 // Lesson Management
 export const addLesson = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { courseId, moduleId } = req.params;
+    const courseId = req.params.courseId as string;
+    const moduleId = req.params.moduleId as string;
     const { title, description, type, videoUrl, content, duration, isRequired, resources } = req.body;
 
     const count = await Lesson.countDocuments({ moduleId });

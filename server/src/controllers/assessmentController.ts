@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { Quiz, QuizAttempt } from '../models/Quiz.js';
 import { Assignment, AssignmentSubmission } from '../models/Assignment.js';
 import { Course } from '../models/Course.js';
@@ -20,14 +20,12 @@ export const getCourseQuizzes = async (req: AuthRequest, res: Response): Promise
     const isAuthorizedInstructorOrAdmin =
       req.user && (course.instructor.toString() === req.user._id.toString() || req.user.role === 'admin');
 
-    let quizzesQuery = Quiz.find({ courseId });
-
+    let quizzes: any[];
     if (isAuthorizedInstructorOrAdmin) {
-      // Include correct answers
-      quizzesQuery = quizzesQuery.select('+questions.correctAnswerIndex');
+      quizzes = await Quiz.find({ courseId }).select('+questions.correctAnswerIndex').lean();
+    } else {
+      quizzes = await Quiz.find({ courseId }).lean();
     }
-
-    const quizzes = await quizzesQuery.lean();
 
     res.status(200).json({ success: true, quizzes });
   } catch (error: any) {

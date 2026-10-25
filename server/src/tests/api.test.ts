@@ -20,7 +20,7 @@ const makeRequest = async (
     },
     body: options.body ? JSON.stringify(options.body) : undefined,
   });
-  const data = await res.json();
+  const data: any = await res.json();
   return { status: res.status, data };
 };
 

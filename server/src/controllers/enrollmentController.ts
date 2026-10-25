@@ -13,7 +13,7 @@ export const enrollFreeCourse = async (req: AuthRequest, res: Response): Promise
       return;
     }
 
-    const { courseId } = req.params;
+    const courseId = req.params.courseId as string;
     const course = await Course.findById(courseId);
 
     if (!course) {
@@ -116,7 +116,7 @@ export const checkEnrollment = async (req: AuthRequest, res: Response): Promise<
       return;
     }
 
-    const { courseId } = req.params;
+    const courseId = req.params.courseId as string;
     const enrollment = await Enrollment.findOne({
       studentId: req.user._id,
       courseId,

@@ -28,7 +28,7 @@ export const claimCertificate = async (req: AuthRequest, res: Response): Promise
       return;
     }
 
-    const { courseId } = req.params;
+    const courseId = req.params.courseId as string;
 
     const cert = await generateCertificateForStudent(req.user._id, courseId);
 
@@ -45,7 +45,7 @@ export const claimCertificate = async (req: AuthRequest, res: Response): Promise
 // Public Verification Endpoint
 export const verifyCertificatePublic = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { certificateId } = req.params;
+    const certificateId = req.params.certificateId as string;
 
     const cert = await Certificate.findOne({ certificateId }).populate('courseId', 'title category thumbnail');
 
